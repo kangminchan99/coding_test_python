@@ -28,3 +28,72 @@ def solution(dartResult):
 
 
 solution('1S2D*3T')
+
+
+#--------------------------------------------------#
+
+# def solution(dartResult):
+#     answer = []
+#     # i가 dartResult를 순회하면서 enumerate - 앞에 번호를 매겨준다.
+#     for num,i in enumerate(dartResult, 1):
+#         if i == 'S':
+#             # answer[-1]번째의 1승
+#             answer[-1] **= 1
+#         elif i == 'D':
+#             # answer[-1]번째의 2승
+#             answer[-1] **= 2
+#         elif i == 'T':
+#             # answer[-1]번째의 3승
+#             answer[-1] **= 3        
+#         elif i == '*':
+#             answer[-1] *= 2
+#             if len(answer) >= 2:
+#                 answer[-2] *=2
+#         elif i == '#':
+#             answer[-1] *= -1
+#         else:
+#             # 두개씩 슬라이싱해서 10인것과 10이 아닌것
+#             if dartResult[num-1: num+1] == '10':
+#                 answer.append(10)
+#             elif dartResult[num-2:num] != '10':
+#                 answer.append(int(i)) 
+
+#     return sum(answer)
+
+# print(solution('1S2D*10T'))      
+
+
+
+
+
+# 정규표현식
+# import re
+
+# testcase = ['1S2D*3T', '1D2S#10S']
+
+
+# def solution(dartResult):
+#     pattern = re.compile(r'([0-9]|10)([SDT])([\*\#]?)')
+#     answer = []
+#     # 계산식을 딕셔너리 형태로
+#     formula = {'S': lambda 값:값,'D': lambda 값:값**2,'T': lambda 값:값**3,}
+
+#     for 숫자,승수, 상 in pattern.findall(dartResult):
+#         if 승수 == 'S':
+#             점수 = formula['S'](int(숫자))
+#         elif 승수 == 'D':
+#             점수 = formula['D'](int(숫자))
+#         elif 승수 == 'T':
+#             점수 = formula['T'](int(숫자))  
+#         if 상 == '*':
+#             점수 *= 2
+#             if answer:
+#                 answer[-1] *=2
+#         elif 상 == '#':
+#             점수 *= -1
+
+#         answer.append(점수)
+
+#     return sum(answer)
+
+# print(solution('1D2S#10S')) 
