@@ -1,0 +1,33 @@
+def solution(data, ext, val_ext, sort_by):
+    result = []
+#   1. ext에 들어오는 비교 값 확인 후  정리
+    dic = {'code': 0 , 'date' : 1 , 'maximum': 2, 'remain': 3}
+    
+    comP = 0
+    sortItems = 0
+    for key, value in dic.items():
+        if key == ext:
+            comP = value   
+        if key == sort_by:
+            sortItems = value
+            
+
+#   2. val_ext에 들어오는 값으로 비교
+
+    for i in range(len(data)):
+        if data[i][comP] < val_ext:
+            result.append(data[i])
+            
+#   3. sort_by기준으로 오름차순 정렬
+
+    lenRes = len(result)
+
+    for i in range(lenRes):
+        for j in range(i):
+            if result[i][sortItems] < result[j][sortItems]:
+                change = result[i]
+                result[i] = result[j]
+                result[j] = change
+                  
+    return result
+                
